@@ -1,6 +1,7 @@
-from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
-from ..models import Recipes, Products, Ingredients
+from django.shortcuts import get_object_or_404
+
+from ..models import Ingredients, Products, Recipes
 
 
 def add_product_to_recipe(request, recipe_id, product_id, weight):

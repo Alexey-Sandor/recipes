@@ -1,14 +1,18 @@
+from django.db import transaction
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
 
-from ..models import Recipes
+from ..models import Ingredients
 
 
+@transaction.atomic
 def cook_recipe(request, recipe_id):
-    recipe = get_object_or_404(Recipes, id=recipe_id)
-    for ingredient in recipe.ingredient.all():
+    ingredients = Ingredients.objects.filter(recipe_id=recipe_id)
+
+    for ingredient in ingredients:
         ingredient.num_of_product_preparations += 1
-        ingredient.save()
+
+    Ingredients.objects.bulk_update(ingredients, ["num_of_product_preparations"])
+
     return HttpResponse(
         "Количество приготовлений с использованием продуктов рецепта увеличено на 1"
     )

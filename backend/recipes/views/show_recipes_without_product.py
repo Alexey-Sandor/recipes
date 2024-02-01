@@ -1,6 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404, render
 
-from ..models import Recipes, Products
+from ..models import Products, Recipes
 
 
 def show_recipes_without_product(request, product_id):
