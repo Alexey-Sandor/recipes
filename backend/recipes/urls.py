@@ -1,7 +1,6 @@
 from django.urls import path
 
-from .views import (add_product_to_recipe, cook_recipe,
-                    show_recipes_without_product)
+from .views import add_product_to_recipe, cook_recipe, show_recipes_without_product
 
 urlpatterns = [
     path(
